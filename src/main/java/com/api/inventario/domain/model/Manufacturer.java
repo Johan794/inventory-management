@@ -1,8 +1,6 @@
 package com.api.inventario.domain.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
@@ -25,6 +23,10 @@ public class Manufacturer {
 
     @OneToMany(mappedBy = "manufacturer")
     private List<DeviceModelManufacturer> deviceModelManufacturers;
+
+    @ManyToOne
+    @JoinColumn(name = "system_state_sate_id")
+    private SystemState systemState;
 
 
 

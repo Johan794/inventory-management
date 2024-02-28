@@ -53,4 +53,8 @@ public class UserPrincipal {
     @JoinColumn(name = "area_area_id")
     private Area area;
 
+    @ManyToOne
+    @JoinColumn(name = "system_state_sate_id")
+    private SystemState systemState;
+
 }
