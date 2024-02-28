@@ -12,7 +12,9 @@ import java.util.UUID;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class KindOfDevice {
+public class TypeOfDevice {
     @Id
-    private UUID kindOfDeviceId;
+    private UUID typeOfDeviceId;
+
+    private String typeDescription;
 }

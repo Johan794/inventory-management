@@ -17,8 +17,6 @@ public class Device {
 
     private String name;
 
-    private String userName;
-
     private String comments;
 
     private String serialNumber;
@@ -31,8 +29,8 @@ public class Device {
     private State deviceSate;
 
     @ManyToOne()
-    @JoinColumn(name = "kind_of_device_kind_of_device_id")
-    private KindOfDevice kindOfDevice;
+    @JoinColumn(name = "type_of_device_type_of_device_id")
+    private TypeOfDevice typeOfDevice;
 
     @ManyToOne()
     @JoinColumn(name = "manufacturer_manufacturer_id")
@@ -41,6 +39,8 @@ public class Device {
     @ManyToOne()
     @JoinColumn(name = "user_user_id")
     private UserPrincipal user;
+
+
 
 
 

@@ -49,4 +49,8 @@ public class UserPrincipal {
     @OneToMany(mappedBy = "user")
     private List<Device> devices;
 
+    @ManyToOne()
+    @JoinColumn(name = "area_area_id")
+    private Area area;
+
 }

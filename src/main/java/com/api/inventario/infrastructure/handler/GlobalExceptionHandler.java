@@ -1,4 +1,4 @@
-package com.api.inventario.domain.error;
+package com.api.inventario.infrastructure.handler;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
