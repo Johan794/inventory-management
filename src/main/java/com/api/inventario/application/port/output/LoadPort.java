@@ -9,5 +9,5 @@ public interface LoadPort<T> {
 
     List<T> getAll();
 
-    T validateFolowwingSpec(Specification<?> vSpecification , T Object);
+    T validateFolowwingSpec(Specification<?> Specification , T Object);
 }

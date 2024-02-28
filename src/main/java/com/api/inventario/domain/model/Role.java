@@ -1,6 +1,5 @@
 package com.api.inventario.domain.model;
 
-import com.api.inventario.domain.model.security.Authorities;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,12 +20,4 @@ public class Role {
 
     @OneToMany(mappedBy = "role")
     List<UserPrincipal> userPrincipalList;
-
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "role_authorities",
-            joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "authority_id")
-    )
-    private List<Authorities> authorities;
 }
