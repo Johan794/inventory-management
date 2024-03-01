@@ -6,9 +6,13 @@ import com.api.inventario.domain.model.DeviceModel;
 import com.api.inventario.infrastructure.repository.DeviceModelRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
+
+@Component
 @RequiredArgsConstructor
 public class DeviceModelAdapter implements LoadPort<DeviceModel> , UpdatePort<DeviceModel> {
     private final DeviceModelRepository deviceModelRepository;
@@ -16,31 +20,33 @@ public class DeviceModelAdapter implements LoadPort<DeviceModel> , UpdatePort<De
 
     @Override
     public DeviceModel getById(String id) {
-        return null;
+        return deviceModelRepository.findById(UUID.fromString(id)).orElse(null);
     }
 
     @Override
     public List<DeviceModel> getAll() {
-        return null;
+        return deviceModelRepository.findAll();
     }
 
     @Override
-    public DeviceModel validateFolowwingSpec(Specification<?> Specification, DeviceModel Object) {
-        return null;
+    public DeviceModel getByCriteria(Specification<DeviceModel> specification) {
+        return deviceModelRepository.findOne(specification).orElse(null);
     }
+
 
     @Override
     public DeviceModel save(DeviceModel object) {
-        return null;
+        return deviceModelRepository.save(object);
     }
 
     @Override
     public DeviceModel delete(DeviceModel object) {
-        return null;
+        deviceModelRepository.delete(object);
+        return object ;
     }
 
     @Override
     public DeviceModel update(DeviceModel object) {
-        return null;
+        return deviceModelRepository.save(object);
     }
 }

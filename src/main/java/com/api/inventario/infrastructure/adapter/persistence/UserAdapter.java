@@ -6,10 +6,12 @@ import com.api.inventario.domain.model.UserPrincipal;
 import com.api.inventario.infrastructure.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 
 import java.util.List;
 
+@Component
 @RequiredArgsConstructor
 public class UserAdapter  implements LoadPort<UserPrincipal> , UpdatePort<UserPrincipal> {
     private final UserRepository userRepository;
@@ -25,7 +27,7 @@ public class UserAdapter  implements LoadPort<UserPrincipal> , UpdatePort<UserPr
     }
 
     @Override
-    public UserPrincipal validateFolowwingSpec(Specification<?> Specification, UserPrincipal Object) {
+    public UserPrincipal getByCriteria(Specification<UserPrincipal> specification) {
         return null;
     }
 

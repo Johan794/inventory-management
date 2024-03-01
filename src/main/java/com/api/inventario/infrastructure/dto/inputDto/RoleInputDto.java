@@ -9,8 +9,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class RoleInputDto {
     private String roleName;
-
-    private List<String> authorities;
+    private String scope;
 }

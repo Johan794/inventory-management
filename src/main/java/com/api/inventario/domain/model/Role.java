@@ -1,5 +1,6 @@
 package com.api.inventario.domain.model;
 
+import com.api.inventario.application.constant.RoleScope;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +18,9 @@ public class Role {
     private UUID roleId;
 
     private String roleName;
+
+    @Enumerated(EnumType.STRING)
+    private RoleScope scope;
 
     @OneToMany(mappedBy = "role")
     List<UserPrincipal> userPrincipalList;

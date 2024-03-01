@@ -6,9 +6,11 @@ import com.api.inventario.domain.model.SystemState;
 import com.api.inventario.infrastructure.repository.SystemStateRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @RequiredArgsConstructor
 public class SystemSateAdapter implements LoadPort<SystemState> , UpdatePort<SystemState> {
     private final SystemStateRepository systemStateRepository;
@@ -24,13 +26,13 @@ public class SystemSateAdapter implements LoadPort<SystemState> , UpdatePort<Sys
     }
 
     @Override
-    public SystemState validateFolowwingSpec(Specification<?> Specification, SystemState Object) {
+    public SystemState getByCriteria(Specification<SystemState> specification) {
         return null;
     }
 
     @Override
     public SystemState save(SystemState object) {
-        return null;
+        return systemStateRepository.save(object);
     }
 
     @Override

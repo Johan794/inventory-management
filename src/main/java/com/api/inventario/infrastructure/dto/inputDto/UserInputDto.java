@@ -1,7 +1,14 @@
 package com.api.inventario.infrastructure.dto.inputDto;
 
 import jakarta.annotation.Nullable;
+import lombok.*;
 
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class UserInputDto {
     private String userType;
 

@@ -21,12 +21,11 @@ public class Device {
 
     private String serialNumber;
 
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer inventoryNumber;
 
     @ManyToOne()
     @JoinColumn(name = "device_state_state_id")
-    private State deviceSate;
+    private DeviceState deviceState;
 
     @ManyToOne()
     @JoinColumn(name = "type_of_device_type_of_device_id")
@@ -37,7 +36,7 @@ public class Device {
     private Manufacturer manufacturer;
 
     @ManyToOne()
-    @JoinColumn(name = "user_user_id")
+    @JoinColumn(name = "user_principal_user_id")
     private UserPrincipal user;
 
 

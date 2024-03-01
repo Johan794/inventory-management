@@ -6,9 +6,11 @@ import com.api.inventario.domain.model.TypeOfDevice;
 import com.api.inventario.infrastructure.repository.TypeOfDeviceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @RequiredArgsConstructor
 public class TypeOfDeviceAdapter implements LoadPort<TypeOfDevice> , UpdatePort<TypeOfDevice> {
     private final TypeOfDeviceRepository typeOfDeviceRepository;
@@ -24,9 +26,10 @@ public class TypeOfDeviceAdapter implements LoadPort<TypeOfDevice> , UpdatePort<
     }
 
     @Override
-    public TypeOfDevice validateFolowwingSpec(Specification<?> Specification, TypeOfDevice Object) {
+    public TypeOfDevice getByCriteria(Specification<TypeOfDevice> specification) {
         return null;
     }
+
 
     @Override
     public TypeOfDevice save(TypeOfDevice object) {

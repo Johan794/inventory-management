@@ -6,9 +6,12 @@ import com.api.inventario.domain.model.Role;
 import com.api.inventario.infrastructure.repository.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+
+@Component
 @RequiredArgsConstructor
 public class RoleAdapter implements LoadPort<Role>  , UpdatePort<Role> {
     private final RoleRepository roleRepository;
@@ -24,7 +27,7 @@ public class RoleAdapter implements LoadPort<Role>  , UpdatePort<Role> {
     }
 
     @Override
-    public Role validateFolowwingSpec(Specification<?> Specification, Role Object) {
+    public Role getByCriteria(Specification<Role> specification) {
         return null;
     }
 

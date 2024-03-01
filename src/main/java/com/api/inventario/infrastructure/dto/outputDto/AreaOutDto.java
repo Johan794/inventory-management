@@ -5,8 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.catalina.User;
 
 
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -18,6 +20,11 @@ public class AreaOutDto {
 
     private String areaName;
 
-    private SystemStateOutDto systemSate;
+    private List<UserOutDto> areaUsers;
+
+    private SystemStateOutDto systemState;
+
+
+
 
 }

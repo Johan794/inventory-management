@@ -6,13 +6,17 @@ import com.api.inventario.domain.model.DeviceModelManufacturer;
 import com.api.inventario.infrastructure.repository.DeviceModelManufacturerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+
+@Component
 @RequiredArgsConstructor
 public class DeviceModelManufacturerAdapter implements LoadPort<DeviceModelManufacturer> , UpdatePort<DeviceModelManufacturer> {
     private final DeviceModelManufacturerRepository deviceModelManufacturerRepository;
 
+    @Deprecated
     @Override
     public DeviceModelManufacturer getById(String id) {
         return null;
@@ -20,26 +24,27 @@ public class DeviceModelManufacturerAdapter implements LoadPort<DeviceModelManuf
 
     @Override
     public List<DeviceModelManufacturer> getAll() {
-        return null;
+        return deviceModelManufacturerRepository.findAll();
     }
 
     @Override
-    public DeviceModelManufacturer validateFolowwingSpec(Specification<?> Specification, DeviceModelManufacturer Object) {
-        return null;
+    public DeviceModelManufacturer getByCriteria(Specification<DeviceModelManufacturer> specification) {
+        return deviceModelManufacturerRepository.findOne(specification).orElse(null);
     }
 
     @Override
     public DeviceModelManufacturer save(DeviceModelManufacturer object) {
-        return null;
+        return deviceModelManufacturerRepository.save(object);
     }
 
     @Override
     public DeviceModelManufacturer delete(DeviceModelManufacturer object) {
-        return null;
+        deviceModelManufacturerRepository.delete(object);
+        return object;
     }
 
     @Override
     public DeviceModelManufacturer update(DeviceModelManufacturer object) {
-        return null;
+        return deviceModelManufacturerRepository.save(object);
     }
 }

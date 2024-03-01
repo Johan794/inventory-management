@@ -14,15 +14,12 @@ import java.util.UUID;
 @NoArgsConstructor
 public class Manufacturer {
     @Id
-    private UUID manufacturerID;
+    private UUID manufacturerId;
 
     private String manufacturerName;
 
     @OneToMany(mappedBy = "manufacturer")
     private  List<Device> devices;
-
-    @OneToMany(mappedBy = "manufacturer")
-    private List<DeviceModelManufacturer> deviceModelManufacturers;
 
     @ManyToOne
     @JoinColumn(name = "system_state_sate_id")

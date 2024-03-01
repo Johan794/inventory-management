@@ -10,7 +10,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class TypeOfDeviceInputDto {
-    private String typeDescription;
+    private String typeName;
     private List<DeviceInputDto> devices;
 }

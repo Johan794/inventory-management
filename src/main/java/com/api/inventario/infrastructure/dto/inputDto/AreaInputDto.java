@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class AreaInputDto {
     @NotBlank
     private String areaName;

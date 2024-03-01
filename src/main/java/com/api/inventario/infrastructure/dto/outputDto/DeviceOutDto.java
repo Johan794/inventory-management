@@ -21,7 +21,7 @@ public class DeviceOutDto {
 
     private String typeOfDevice;
 
-    private String deviceSate;
+    private String deviceState;
 
     private String manufacturer;
 

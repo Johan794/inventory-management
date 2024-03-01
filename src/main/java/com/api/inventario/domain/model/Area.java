@@ -25,10 +25,8 @@ public class Area {
     private List<UserPrincipal> areaUsers;
 
     @ManyToOne
-    @JoinColumn(name = "system_state_sate_id")
+    @JoinColumn(name = "system_state_state_id")
     private SystemState systemState;
-
-
 
 
 }

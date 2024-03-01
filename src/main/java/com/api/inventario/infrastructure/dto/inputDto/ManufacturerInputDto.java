@@ -10,6 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class ManufacturerInputDto {
     private String manufacturerName;
     private List<DeviceInputDto> devices;

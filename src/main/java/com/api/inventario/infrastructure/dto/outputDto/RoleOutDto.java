@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RoleOutDto {
     private String roleName;
+    private String scope;
 }

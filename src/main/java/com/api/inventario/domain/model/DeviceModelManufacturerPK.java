@@ -17,7 +17,6 @@ import java.io.Serializable;
 public class DeviceModelManufacturerPK implements Serializable {
     private static final long serialVersionUID = 1L;
 
-
     @ManyToOne
     @JoinColumn(name = "manufacturer_manufacturer_id")
     private Manufacturer manufacturer;

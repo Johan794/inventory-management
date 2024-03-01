@@ -9,13 +9,10 @@ import lombok.*;
 import java.util.UUID;
 
 @Entity
-@Builder
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public  abstract class State {
     @Id
-    private UUID sateId;
+    private UUID stateId;
 }

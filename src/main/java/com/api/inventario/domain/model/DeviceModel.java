@@ -24,7 +24,6 @@ public class DeviceModel {
 
     private String modelDescription;
 
-    @OneToMany(mappedBy = "deviceModel")
-    List<DeviceModelManufacturer> deviceModelManufacturers;
+
 
 }

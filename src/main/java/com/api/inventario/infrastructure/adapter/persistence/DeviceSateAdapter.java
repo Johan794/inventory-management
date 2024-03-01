@@ -6,9 +6,12 @@ import com.api.inventario.domain.model.DeviceState;
 import com.api.inventario.infrastructure.repository.DeviceStateRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+
+@Component
 @RequiredArgsConstructor
 public class DeviceSateAdapter implements LoadPort<DeviceState> , UpdatePort<DeviceState> {
     private final DeviceStateRepository deviceStateRepository;
@@ -24,9 +27,10 @@ public class DeviceSateAdapter implements LoadPort<DeviceState> , UpdatePort<Dev
     }
 
     @Override
-    public DeviceState validateFolowwingSpec(Specification<?> Specification, DeviceState Object) {
+    public DeviceState getByCriteria(Specification<DeviceState> specification) {
         return null;
     }
+
 
     @Override
     public DeviceState save(DeviceState object) {

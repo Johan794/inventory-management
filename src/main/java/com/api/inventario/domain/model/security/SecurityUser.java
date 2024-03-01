@@ -1,5 +1,6 @@
 package com.api.inventario.domain.model.security;
 
+import com.api.inventario.application.constant.RoleScope;
 import com.api.inventario.domain.model.Role;
 import com.api.inventario.domain.model.UserPrincipal;
 import org.springframework.security.core.GrantedAuthority;
@@ -12,7 +13,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 public record SecurityUser(UserPrincipal userPrincipal) implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Stream.of(userPrincipal).map(UserPrincipal::getRole).map(Role::getRoleName).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        return Stream.of(userPrincipal).map(UserPrincipal::getRole).map(Role::getScope).map(RoleScope::getScope).map(SimpleGrantedAuthority::new).collect(Collectors.toList());
     }
 
     @Override

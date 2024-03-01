@@ -7,8 +7,11 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class DeviceModelInputDto {
     private String modelName;
 
     private String modelDescription;
+
+    private String manufacturerNames;
 }

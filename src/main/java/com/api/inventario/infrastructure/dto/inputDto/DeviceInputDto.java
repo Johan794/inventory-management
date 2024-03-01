@@ -7,6 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class DeviceInputDto {
 
     private String name;
@@ -15,7 +16,9 @@ public class DeviceInputDto {
 
     private String serialNumber;
 
-    private String deviceSate;
+    private Integer inventoryNumber;
+
+    private String deviceState;
 
     private String typeOfDevice;
 

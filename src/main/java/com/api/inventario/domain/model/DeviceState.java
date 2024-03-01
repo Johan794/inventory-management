@@ -4,11 +4,11 @@ import jakarta.persistence.Entity;
 import lombok.*;
 
 @Entity
-@Builder
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class DeviceState extends State{
 
     private String stateDescription;

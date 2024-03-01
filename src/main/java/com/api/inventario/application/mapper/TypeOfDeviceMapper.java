@@ -5,7 +5,7 @@ import com.api.inventario.infrastructure.dto.inputDto.TypeOfDeviceInputDto;
 import com.api.inventario.infrastructure.dto.outputDto.TypeOfDeviceOutDto;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {DeviceMapper.class})
 public interface TypeOfDeviceMapper {
     TypeOfDevice typeOfDeviceFromTypeOfDeviceInputDto(TypeOfDeviceInputDto typeOfDeviceInputDto);
 

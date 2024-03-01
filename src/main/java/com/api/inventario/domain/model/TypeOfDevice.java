@@ -18,7 +18,7 @@ public class TypeOfDevice {
     @Id
     private UUID typeOfDeviceId;
 
-    private String typeDescription;
+    private String typeName;
 
     @OneToMany(mappedBy = "typeOfDevice")
     private List<Device> devices;
