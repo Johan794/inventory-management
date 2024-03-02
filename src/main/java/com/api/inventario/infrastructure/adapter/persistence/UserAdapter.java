@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -18,31 +20,36 @@ public class UserAdapter  implements LoadPort<UserPrincipal> , UpdatePort<UserPr
 
     @Override
     public UserPrincipal getById(String id) {
-        return null;
+        return userRepository.findById(UUID.fromString(id)).orElse(null);
     }
 
     @Override
     public List<UserPrincipal> getAll() {
-        return null;
+        return userRepository.findAll();
     }
 
     @Override
     public UserPrincipal getByCriteria(Specification<UserPrincipal> specification) {
-        return null;
+        return userRepository.findOne(specification).orElse(null);
     }
 
     @Override
     public UserPrincipal save(UserPrincipal object) {
-        return null;
+        return userRepository.save(object);
     }
 
     @Override
     public UserPrincipal delete(UserPrincipal object) {
-        return null;
+        userRepository.delete(object);
+        return object;
     }
 
     @Override
     public UserPrincipal update(UserPrincipal object) {
-        return null;
+        return userRepository.save(object);
+    }
+
+    public Optional<UserPrincipal> getByUserName(String name){
+        return userRepository.findByUserName(name);
     }
 }

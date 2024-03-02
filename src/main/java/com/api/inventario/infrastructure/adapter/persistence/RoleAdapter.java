@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @Component
@@ -18,31 +19,32 @@ public class RoleAdapter implements LoadPort<Role>  , UpdatePort<Role> {
 
     @Override
     public Role getById(String id) {
-        return null;
+        return roleRepository.findById(UUID.fromString(id)).orElse(null);
     }
 
     @Override
     public List<Role> getAll() {
-        return null;
+        return roleRepository.findAll();
     }
 
     @Override
     public Role getByCriteria(Specification<Role> specification) {
-        return null;
+        return roleRepository.findOne(specification).orElse(null);
     }
 
     @Override
     public Role save(Role object) {
-        return null;
+        return roleRepository.save(object);
     }
 
     @Override
     public Role delete(Role object) {
-        return null;
+        roleRepository.save(object);
+        return object;
     }
 
     @Override
     public Role update(Role object) {
-        return null;
+        return roleRepository.save(object);
     }
 }

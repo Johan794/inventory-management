@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -17,32 +18,33 @@ public class TypeOfDeviceAdapter implements LoadPort<TypeOfDevice> , UpdatePort<
 
     @Override
     public TypeOfDevice getById(String id) {
-        return null;
+        return typeOfDeviceRepository.findById(UUID.fromString(id)).orElse(null);
     }
 
     @Override
     public List<TypeOfDevice> getAll() {
-        return null;
+        return typeOfDeviceRepository.findAll();
     }
 
     @Override
     public TypeOfDevice getByCriteria(Specification<TypeOfDevice> specification) {
-        return null;
+        return typeOfDeviceRepository.findOne(specification).orElse(null);
     }
 
 
     @Override
     public TypeOfDevice save(TypeOfDevice object) {
-        return null;
+        return typeOfDeviceRepository.save(object);
     }
 
     @Override
     public TypeOfDevice delete(TypeOfDevice object) {
-        return null;
+        typeOfDeviceRepository.delete(object);
+        return object;
     }
 
     @Override
     public TypeOfDevice update(TypeOfDevice object) {
-        return null;
+        return typeOfDeviceRepository.save(object);
     }
 }

@@ -46,4 +46,7 @@ public class ManufacturerAdapter implements LoadPort<Manufacturer> , UpdatePort<
     public Manufacturer update(Manufacturer object) {
         return manufacturerRepository.save(object);
     }
+
+
+
 }

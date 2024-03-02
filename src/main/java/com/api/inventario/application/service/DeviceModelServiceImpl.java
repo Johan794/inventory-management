@@ -5,6 +5,7 @@ import com.api.inventario.application.mapper.DeviceModelMapper;
 import com.api.inventario.application.port.input.DeviceModelService;
 import com.api.inventario.application.port.output.LoadPort;
 import com.api.inventario.application.port.output.UpdatePort;
+import com.api.inventario.application.service.utils.ObjectValidator;
 import com.api.inventario.domain.model.DeviceModel;
 import com.api.inventario.domain.model.DeviceModelManufacturer;
 import com.api.inventario.domain.model.DeviceModelManufacturerPK;
@@ -30,10 +31,11 @@ public class DeviceModelServiceImpl implements DeviceModelService {
     private final UpdatePort<DeviceModel> deviceModelUpdatePort;
     private final UpdatePort<DeviceModelManufacturer> deviceModelManufacturerUpdatePort;
     private final DeviceModelMapper deviceModelMapper;
+    private final ObjectValidator<DeviceModel> deviceModelObjectValidator;
 
     @Override
     public DeviceModeOutDto createDeviceModel(DeviceModelInputDto deviceInputDto) {
-        if(verifyIfExistByName(deviceInputDto.getModelName())!=null){
+        if(deviceModelObjectValidator.checkIfExistByName(DeviceModelSpecification.getByDeviceName(deviceInputDto.getModelName()),deviceModelLoadPort)!=null){
             throwException("Error creating Device model", HttpStatus.CONFLICT, ErrorCode.ERROR_CREATING);
         }
 
@@ -51,7 +53,7 @@ public class DeviceModelServiceImpl implements DeviceModelService {
 
     @Override
     public DeviceModeOutDto updateDeviceModel(DeviceModelInputDto deviceInputDto) {
-        if(verifyIfExistByName(deviceInputDto.getModelName())==null){
+        if(deviceModelObjectValidator.checkIfExistByName(DeviceModelSpecification.getByDeviceName(deviceInputDto.getModelName()),deviceModelLoadPort)==null){
             throwException("Error updating the Device model",HttpStatus.NOT_FOUND,ErrorCode.ERROR_RESOURCE_NOT_FOUND);
         }
         return deviceModelMapper.deviceModelOutDtoFromDeviceModel(deviceModelUpdatePort.save(deviceModelMapper.deviceModelFromDeviceModelInputDto(deviceInputDto)));
@@ -59,7 +61,7 @@ public class DeviceModelServiceImpl implements DeviceModelService {
 
     @Override
     public DeviceModeOutDto deleteDeviceModel(String deviceModelId) {
-        if(verifyIfExist(deviceModelId) == null){
+        if(deviceModelObjectValidator.checkIfExistById(deviceModelId,deviceModelLoadPort) == null){
             throwException("Error deleting the device model",HttpStatus.NOT_FOUND,ErrorCode.ERROR_RESOURCE_NOT_FOUND);
         }
         return deviceModelMapper.deviceModelOutDtoFromDeviceModel(deviceModelUpdatePort.delete(deviceModelLoadPort.getById(deviceModelId)));
@@ -67,7 +69,7 @@ public class DeviceModelServiceImpl implements DeviceModelService {
 
     @Override
     public DeviceModeOutDto getDeviceModel(String deviceModelId) {
-        if(verifyIfExist(deviceModelId) == null){
+        if(deviceModelObjectValidator.checkIfExistById(deviceModelId,deviceModelLoadPort) == null){
             throwException("Error getting the device model",HttpStatus.NOT_FOUND,ErrorCode.ERROR_RESOURCE_NOT_FOUND);
         }
         return deviceModelMapper.deviceModelOutDtoFromDeviceModel(deviceModelLoadPort.getById(deviceModelId));
@@ -77,14 +79,6 @@ public class DeviceModelServiceImpl implements DeviceModelService {
     @Override
     public List<DeviceModeOutDto> getAllDeviceModel() {
         return deviceModelLoadPort.getAll().stream().map(deviceModelMapper::deviceModelOutDtoFromDeviceModel).collect(Collectors.toList());
-    }
-
-    private DeviceModel verifyIfExist(String id){
-        return deviceModelLoadPort.getById(id);
-    }
-
-    private DeviceModel verifyIfExistByName(String name){
-        return deviceModelLoadPort.getByCriteria(DeviceModelSpecification.getByDeviceName(name));
     }
 
     private List<String> checkExistingManufacturer(List<String> manufacturers){
@@ -101,15 +95,13 @@ public class DeviceModelServiceImpl implements DeviceModelService {
                 .map(manufacturer -> manufacturerLoadPort.getByCriteria(ManufacturerSpecification.getByName(manufacturer)))
                 .toList();
 
-        manufacturersList.forEach(manufacturer -> {
-            deviceModelManufacturerUpdatePort.save(DeviceModelManufacturer
-                    .builder()
-                    .id(DeviceModelManufacturerPK.builder()
-                            .deviceModel(deviceModel)
-                            .manufacturer(manufacturer)
-                            .build())
-                    .build());
-        });
+        manufacturersList.forEach(manufacturer -> deviceModelManufacturerUpdatePort.save(DeviceModelManufacturer
+                .builder()
+                .id(DeviceModelManufacturerPK.builder()
+                        .deviceModel(deviceModel)
+                        .manufacturer(manufacturer)
+                        .build())
+                .build()));
 
 
     }

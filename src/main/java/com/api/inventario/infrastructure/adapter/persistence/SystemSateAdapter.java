@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -17,17 +18,17 @@ public class SystemSateAdapter implements LoadPort<SystemState> , UpdatePort<Sys
 
     @Override
     public SystemState getById(String id) {
-        return null;
+        return systemStateRepository.findById(UUID.fromString(id)).orElse(null);
     }
 
     @Override
     public List<SystemState> getAll() {
-        return null;
+        return systemStateRepository.findAll();
     }
 
     @Override
     public SystemState getByCriteria(Specification<SystemState> specification) {
-        return null;
+        return systemStateRepository.findOne(specification).orElse(null);
     }
 
     @Override
@@ -37,11 +38,12 @@ public class SystemSateAdapter implements LoadPort<SystemState> , UpdatePort<Sys
 
     @Override
     public SystemState delete(SystemState object) {
-        return null;
+        systemStateRepository.delete(object);
+        return object;
     }
 
     @Override
     public SystemState update(SystemState object) {
-        return null;
+        return systemStateRepository.save(object);
     }
 }

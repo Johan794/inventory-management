@@ -9,6 +9,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 
 @Component
@@ -18,32 +19,33 @@ public class DeviceSateAdapter implements LoadPort<DeviceState> , UpdatePort<Dev
 
     @Override
     public DeviceState getById(String id) {
-        return null;
+        return deviceStateRepository.findById(UUID.fromString(id)).orElse(null);
     }
 
     @Override
     public List<DeviceState> getAll() {
-        return null;
+        return deviceStateRepository.findAll();
     }
 
     @Override
     public DeviceState getByCriteria(Specification<DeviceState> specification) {
-        return null;
+        return deviceStateRepository.findOne(specification).orElse(null);
     }
 
 
     @Override
     public DeviceState save(DeviceState object) {
-        return null;
+        return deviceStateRepository.save(object);
     }
 
     @Override
     public DeviceState delete(DeviceState object) {
-        return null;
+        deviceStateRepository.delete(object);
+        return object;
     }
 
     @Override
     public DeviceState update(DeviceState object) {
-        return null;
+        return deviceStateRepository.save(object);
     }
 }

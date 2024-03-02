@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 
 import java.util.List;
+import java.util.UUID;
 
 @Component
 @RequiredArgsConstructor
@@ -18,32 +19,33 @@ public class DeviceApadter implements LoadPort<Device> , UpdatePort<Device> {
 
     @Override
     public Device getById(String id) {
-        return null;
+        return deviceRepository.findById(UUID.fromString(id)).orElse(null);
     }
 
     @Override
     public List<Device> getAll() {
-        return null;
+        return deviceRepository.findAll();
     }
 
     @Override
     public Device getByCriteria(Specification<Device> specification) {
-        return null;
+        return deviceRepository.findOne(specification).orElse(null);
     }
 
 
     @Override
     public Device save(Device object) {
-        return null;
+        return deviceRepository.save(object);
     }
 
     @Override
     public Device delete(Device object) {
-        return null;
+        deviceRepository.delete(object);
+        return object;
     }
 
     @Override
     public Device update(Device object) {
-        return null;
+        return deviceRepository.save(object);
     }
 }
