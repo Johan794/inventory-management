@@ -10,7 +10,7 @@ import  java.util.List;
 
 public class ErrorManager {
 
-    public static String fields = "";
+    private static String fields = "";
     public static ErrorDetail createDetail(String message, ErrorCode errorCode){
         return ErrorDetail.builder().errorCode(errorCode).errorMessage(message).build();
     }
@@ -20,6 +20,7 @@ public class ErrorManager {
     }
 
     public static String getMissingFiled(MethodArgumentNotValidException ex) {
+
         BindingResult bindingResult = ex.getBindingResult();
         if (!bindingResult.hasErrors()) {
             return "";

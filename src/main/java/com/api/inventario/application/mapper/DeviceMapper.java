@@ -1,9 +1,8 @@
 package com.api.inventario.application.mapper;
 
 import com.api.inventario.domain.model.Device;
-import com.api.inventario.infrastructure.dto.inputDto.DeviceInputDto;
-import com.api.inventario.infrastructure.dto.outputDto.DeviceOutDto;
-import org.mapstruct.AfterMapping;
+import com.api.inventario.application.dto.inputDto.DeviceInputDto;
+import com.api.inventario.application.dto.outputDto.DeviceOutDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

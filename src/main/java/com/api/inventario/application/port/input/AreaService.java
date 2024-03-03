@@ -1,7 +1,7 @@
 package com.api.inventario.application.port.input;
 
-import com.api.inventario.infrastructure.dto.inputDto.AreaInputDto;
-import com.api.inventario.infrastructure.dto.outputDto.AreaOutDto;
+import com.api.inventario.application.dto.inputDto.AreaInputDto;
+import com.api.inventario.application.dto.outputDto.AreaOutDto;
 
 import java.util.List;
 

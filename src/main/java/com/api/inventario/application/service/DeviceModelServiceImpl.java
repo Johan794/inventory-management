@@ -10,10 +10,10 @@ import com.api.inventario.domain.model.DeviceModel;
 import com.api.inventario.domain.model.DeviceModelManufacturer;
 import com.api.inventario.domain.model.DeviceModelManufacturerPK;
 import com.api.inventario.domain.model.Manufacturer;
-import com.api.inventario.infrastructure.dto.inputDto.DeviceModelInputDto;
-import com.api.inventario.infrastructure.dto.outputDto.DeviceModeOutDto;
-import com.api.inventario.infrastructure.repository.specifications.DeviceModelSpecification;
-import com.api.inventario.infrastructure.repository.specifications.ManufacturerSpecification;
+import com.api.inventario.application.dto.inputDto.DeviceModelInputDto;
+import com.api.inventario.application.dto.outputDto.DeviceModeOutDto;
+import com.api.inventario.application.specifications.DeviceModelSpecification;
+import com.api.inventario.application.specifications.ManufacturerSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -47,8 +47,9 @@ public class DeviceModelServiceImpl implements DeviceModelService {
 
         DeviceModel deviceModel = deviceModelMapper.deviceModelFromDeviceModelInputDto(deviceInputDto);
         deviceModel.setDeviceModelId(UUID.randomUUID());
+        deviceModelUpdatePort.save(deviceModel);
         buildRelations(manufacturers,deviceModel);
-        return deviceModelMapper.deviceModelOutDtoFromDeviceModel(deviceModelUpdatePort.save(deviceModel));
+        return deviceModelMapper.deviceModelOutDtoFromDeviceModel(deviceModel);
     }
 
     @Override

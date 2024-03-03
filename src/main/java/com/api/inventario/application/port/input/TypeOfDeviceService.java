@@ -1,7 +1,7 @@
 package com.api.inventario.application.port.input;
 
-import com.api.inventario.infrastructure.dto.inputDto.TypeOfDeviceInputDto;
-import com.api.inventario.infrastructure.dto.outputDto.TypeOfDeviceOutDto;
+import com.api.inventario.application.dto.inputDto.TypeOfDeviceInputDto;
+import com.api.inventario.application.dto.outputDto.TypeOfDeviceOutDto;
 
 import java.util.List;
 

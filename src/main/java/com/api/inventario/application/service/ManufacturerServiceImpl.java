@@ -7,11 +7,11 @@ import com.api.inventario.application.port.output.LoadPort;
 import com.api.inventario.application.port.output.UpdatePort;
 import com.api.inventario.application.service.utils.ObjectValidator;
 import com.api.inventario.domain.model.*;
-import com.api.inventario.infrastructure.dto.inputDto.ManufacturerInputDto;
-import com.api.inventario.infrastructure.dto.outputDto.ManufacturerOutDto;
-import com.api.inventario.infrastructure.repository.specifications.DeviceModelSpecification;
-import com.api.inventario.infrastructure.repository.specifications.DeviceSpecification;
-import com.api.inventario.infrastructure.repository.specifications.ManufacturerSpecification;
+import com.api.inventario.application.dto.inputDto.ManufacturerInputDto;
+import com.api.inventario.application.dto.outputDto.ManufacturerOutDto;
+import com.api.inventario.application.specifications.DeviceModelSpecification;
+import com.api.inventario.application.specifications.DeviceSpecification;
+import com.api.inventario.application.specifications.ManufacturerSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -54,9 +54,7 @@ public class ManufacturerServiceImpl  implements ManufacturerService {
         }
 
         Manufacturer manufacturer = manufacturerMapper.manufacturerFromManufacturerInputDto(manufacturerInputDto);
-        manufacturer.setManufacturerId(UUID.randomUUID());
-
-        return manufacturerMapper.manufacturerOutDtoFromManufacturer(manufacturerUpdatePort.save(buildRelations(cleanDevices(manufacturer.getDevices()),manufacturer,models)));
+        return manufacturerMapper.manufacturerOutDtoFromManufacturer(buildRelations(cleanDevices(manufacturer.getDevices()),manufacturer,models));
     }
 
     @Override
@@ -96,6 +94,12 @@ public class ManufacturerServiceImpl  implements ManufacturerService {
     }
 
     private Manufacturer buildRelations(List<Device> devices,Manufacturer manufacturer , List<DeviceModel> models){
+        SystemState currentSystemState = systemStateLoadPort.getById(ACTIVE_ID);
+        manufacturer.setManufacturerId(UUID.randomUUID());
+        manufacturer.setDevices(devices);
+        manufacturer.setSystemState(currentSystemState);
+        manufacturerUpdatePort.save(manufacturer);
+
         devices.forEach(device -> {
                     device.setManufacturer(manufacturer);
                     deviceUpdatePort.save(device);
@@ -109,9 +113,8 @@ public class ManufacturerServiceImpl  implements ManufacturerService {
                                 .build())
                 .build()));
 
-        manufacturer.setDevices(devices);
-        SystemState currentSystemState = systemStateLoadPort.getById(ACTIVE_ID);
-        manufacturer.setSystemState(currentSystemState);
+
+
         currentSystemState.getManufacturers().add(manufacturer);
         systemStateUpdatePort.save(currentSystemState);
 

@@ -6,6 +6,8 @@ import com.api.inventario.application.constant.RoleScope;
 import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -42,11 +44,13 @@ import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
 @EnableWebSecurity
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Transactional(propagation = Propagation.REQUIRED)
 public class SecurityConfig {
     private final AuthenticatorManager authenticatorManager;
-    private final String secret = "longenoughsecrettotestjwtencrypt";
+
+    @Value("${jwt.secret}")
+    private String secret;
 
 
     @Bean

@@ -1,8 +1,6 @@
 package com.api.inventario.infrastructure.adapter.rest.api;
 
 
-import com.api.inventario.infrastructure.dto.inputDto.AreaInputDto;
-import com.api.inventario.infrastructure.dto.outputDto.AreaOutDto;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,10 +13,10 @@ import java.util.List;
 
 public interface CrudApi<I,O> {
     @PostMapping("/create")
-    O create(I dto);
+    O create(@RequestBody I dto);
 
     @PutMapping("/update")
-    O update(I dto);
+    O update(@RequestBody I dto);
 
     @DeleteMapping("/delete/{id}")
     O delete(@PathVariable String id);

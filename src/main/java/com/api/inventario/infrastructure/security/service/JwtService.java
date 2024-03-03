@@ -1,6 +1,6 @@
 package com.api.inventario.infrastructure.security.service;
 
-import com.api.inventario.infrastructure.dto.auth.JwtDto;
+import com.api.inventario.application.dto.auth.JwtDto;
 import com.api.inventario.infrastructure.security.CustomAuthentication;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;

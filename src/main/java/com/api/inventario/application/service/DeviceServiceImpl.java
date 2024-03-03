@@ -6,10 +6,10 @@ import com.api.inventario.application.port.input.DeviceService;
 import com.api.inventario.application.port.output.LoadPort;
 import com.api.inventario.application.port.output.UpdatePort;
 import com.api.inventario.application.service.utils.ObjectValidator;
+import com.api.inventario.application.specifications.*;
 import com.api.inventario.domain.model.*;
-import com.api.inventario.infrastructure.dto.inputDto.DeviceInputDto;
-import com.api.inventario.infrastructure.dto.outputDto.DeviceOutDto;
-import com.api.inventario.infrastructure.repository.specifications.*;
+import com.api.inventario.application.dto.inputDto.DeviceInputDto;
+import com.api.inventario.application.dto.outputDto.DeviceOutDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -50,8 +50,8 @@ public class DeviceServiceImpl implements DeviceService {
         }
         Device deviceToSave = buildRelations(deviceInputDto.getDeviceState(),deviceInputDto.getTypeOfDevice(),deviceInputDto.getManufacturer(),deviceInputDto.getUser(),deviceMapper.deviceFromDeviceInputDto(deviceInputDto));
         deviceToSave.setDeviceID(UUID.randomUUID());
-
-        return deviceMapper.deviceOutDtoFromDevice(deviceUpdatePort.save(deviceToSave));
+        deviceUpdatePort.save(deviceToSave);
+        return deviceMapper.deviceOutDtoFromDevice(deviceToSave);
     }
 
     @Override

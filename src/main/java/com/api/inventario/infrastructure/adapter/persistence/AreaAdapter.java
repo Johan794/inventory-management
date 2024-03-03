@@ -5,7 +5,6 @@ import com.api.inventario.application.port.output.UpdatePort;
 import com.api.inventario.domain.model.Area;
 import com.api.inventario.infrastructure.repository.AreaRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 

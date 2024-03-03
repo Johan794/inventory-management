@@ -1,7 +1,7 @@
 package com.api.inventario.application.port.input;
 
-import com.api.inventario.infrastructure.dto.inputDto.ManufacturerInputDto;
-import com.api.inventario.infrastructure.dto.outputDto.ManufacturerOutDto;
+import com.api.inventario.application.dto.inputDto.ManufacturerInputDto;
+import com.api.inventario.application.dto.outputDto.ManufacturerOutDto;
 
 import java.util.List;
 

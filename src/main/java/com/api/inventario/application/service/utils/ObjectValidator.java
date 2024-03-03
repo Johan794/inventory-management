@@ -4,8 +4,6 @@ import com.api.inventario.application.port.output.LoadPort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
-
 @Component
 public class ObjectValidator<T> {
     public T checkIfExistById(String id, LoadPort<T> loadPort){

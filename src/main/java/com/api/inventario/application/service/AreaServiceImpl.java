@@ -8,9 +8,9 @@ import com.api.inventario.application.port.output.UpdatePort;
 import com.api.inventario.application.service.utils.ObjectValidator;
 import com.api.inventario.domain.model.Area;
 import com.api.inventario.domain.model.SystemState;
-import com.api.inventario.infrastructure.dto.inputDto.AreaInputDto;
-import com.api.inventario.infrastructure.dto.outputDto.AreaOutDto;
-import com.api.inventario.infrastructure.repository.specifications.AreaSpecification;
+import com.api.inventario.application.dto.inputDto.AreaInputDto;
+import com.api.inventario.application.dto.outputDto.AreaOutDto;
+import com.api.inventario.application.specifications.AreaSpecification;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -47,8 +47,9 @@ public class AreaServiceImpl implements AreaService {
         area.setAreaUsers(new ArrayList<>());
         area.setSystemState(currentSystemState);
         currentSystemState.getAreas().add(area);
+        areaUpdatePort.save(area);
         systemStateUpdatePort.save(currentSystemState);
-        return areaMapper.areaOutDtoFromArea(areaUpdatePort.save(area));
+        return areaMapper.areaOutDtoFromArea(area);
     }
 
 
