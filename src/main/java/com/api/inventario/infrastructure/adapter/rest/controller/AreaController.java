@@ -5,6 +5,7 @@ import com.api.inventario.infrastructure.adapter.rest.api.CrudApi;
 import com.api.inventario.application.dto.inputDto.AreaInputDto;
 import com.api.inventario.application.dto.outputDto.AreaOutDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import java.util.List;
 public class AreaController  implements CrudApi<AreaInputDto , AreaOutDto> {
     private final AreaService areaService;
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @Override
     public AreaOutDto create(AreaInputDto dto) {
         return areaService.createArea(dto);
